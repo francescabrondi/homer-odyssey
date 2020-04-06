@@ -1,63 +1,73 @@
-.input {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-top: 50px;
-  margin-bottom: 20px;
-  @include media-breakpoint-down(sm) {
-    flex-direction: column;
-    align-items: center;
-  }
-  @include media-breakpoint-down(md) {
-    flex-direction: column;
-    align-items: center;
-  }
-  h1 {
-    font-family: $title-font;
-    font-weight: 500;
-    span {
-      font-family: $title-font;
-      font-weight: 500;
-      color: $secondary-color;
-    }
-  }
-  form {
+.signin .signup {
+  .input {
     display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin-bottom: 50px;
-    input {
-      margin-top: 30px;
-      padding: 10px;
-      border-radius: 5px;
-      border-color: $secondary-color;
-    }
-    button {
-      font-family: $font-body;
-      font-size: 16px;
-      margin-top: 40px;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: $secondary-color;
-      color: white;
-    }
-  }
-  p {
-    font-family: $font-body;
-  }
-  .redirect-two {
-    font-family: $font-body;
-    font-size: 16px;
-    color: $secondary-color;
-  }
-  img {
-    width: 500px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    margin-bottom: 20px;
     @include media-breakpoint-down(sm) {
-      width: 300px;
+      flex-direction: column;
+      align-items: center;
     }
     @include media-breakpoint-down(md) {
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-family: $title-font;
+      font-weight: 500;
+      span {
+        font-family: $title-font;
+        font-weight: 500;
+        color: $secondary-color;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
       width: 300px;
+      margin-bottom: 50px;
+      input {
+        margin-top: 30px;
+        padding: 10px;
+        border-radius: 5px;
+        border-color: $secondary-color;
+      }
+      button {
+        font-family: $font-body;
+        font-size: 16px;
+        margin-top: 40px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: $secondary-color;
+        color: white;
+      }
+    }
+    p {
+      font-family: $font-body;
+    }
+    .redirect-two {
+      font-family: $font-body;
+      font-size: 16px;
+      color: $secondary-color;
+    }
+    img {
+      width: 500px;
+      @include media-breakpoint-down(sm) {
+        width: 300px;
+      }
+      @include media-breakpoint-down(md) {
+        width: 300px;
+      }
+    }
+  }
+  .profile {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 350px;
+    p {
+      color: $secondary-color;
     }
   }
 }
