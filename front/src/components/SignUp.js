@@ -6,26 +6,39 @@ const Input = () => {
     name: "",
     surname: "",
     email: "",
-    password: ""
+    password: "",
   });
 
-  const onChange = e => {
+  const onChange = (e) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = e => {
+  const [flash, setFlash] = useState("");
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    fetch("http://localhost:5000/auth/signup", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify(flash),
+    })
+      .then((res) => res.json())
+      .then(
+        (res) => setFlash({ flash: res.flash }),
+        (err) => setFlash({ flash: err.flash })
+      );
   };
 
   const { name, surname, email, password } = form;
 
   return (
     <div className="input">
-      <h1>{`${name}, ${surname}`}</h1>
+      <h1>{`${name} ${surname}`}</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
