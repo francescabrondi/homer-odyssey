@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+import axios from "axios";
+
 const Input = () => {
   const [form, setForm] = useState({
     name: "",
-    surname: "",
+    lastname: "",
     email: "",
     password: "",
   });
@@ -16,44 +18,38 @@ const Input = () => {
     });
   };
 
-  const [flash, setFlash] = useState("");
+  const [flash, setFlash] = useState(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:5000/auth/signup", {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-      body: JSON.stringify(flash),
-    })
-      .then((res) => res.json())
-      .then(
-        (res) => setFlash({ flash: res.flash }),
-        (err) => setFlash({ flash: err.flash })
-      );
+
+    const response = await axios.post("/auth/signup", form);
+    console.log(response);
+    setFlash(true);
   };
 
-  const { name, surname, email, password } = form;
+  const { name, lastname, email, password } = form;
 
   return (
     <div className="input">
-      <h1>{`${name} ${surname}`}</h1>
       <form onSubmit={handleSubmit}>
+        <h1>
+          Registration data: <span>{`${name} ${lastname}`}</span>
+        </h1>
         <input
           type="text"
           id="name"
           name="name"
-          placeholder="Name"
+          placeholder="First Name"
           value={name}
           onChange={onChange}
         />
         <input
           type="text"
-          id="surname"
-          name="surname"
-          placeholder="Surname"
-          value={surname}
+          id="lastname"
+          name="lastname"
+          placeholder="Last name"
+          value={lastname}
           onChange={onChange}
         />
         <input
@@ -68,16 +64,22 @@ const Input = () => {
           type="text"
           id="password"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           value={password}
           onChange={onChange}
         />
-        <input type="submit" value="Register" />
+        <button type="submit">Register</button>
+        <p className="redirect-one">Already registered?</p>
+        <NavLink to="/login">
+          <p className="redirect-two">Log in</p>
+        </NavLink>
       </form>
-      <p className="redirect-one">Already registered?</p>
-      <NavLink to="/login">
-        <p className="redirect-two">Log in</p>
-      </NavLink>
+      <div className="image">
+        <img
+          src="http://pngimg.com/uploads/simpsons/simpsons_PNG80.png"
+          alt=""
+        />
+      </div>
     </div>
   );
 };
