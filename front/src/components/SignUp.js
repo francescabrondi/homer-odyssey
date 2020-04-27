@@ -62,7 +62,7 @@ const Input = () => {
             onChange={onChange}
           />
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             placeholder="Password"
