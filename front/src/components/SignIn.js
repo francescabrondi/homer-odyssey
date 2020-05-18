@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
+import Context from "../context";
+
 const signIn = () => {
-  const handleSubmit = async (e) => {
+  const { login } = useContext(Context);
+
+  const submitForm = (e) => {
     e.preventDefault();
 
-    const response = await axios.post("/auth/signin", form);
-    console.log(response);
-    setFlash(true);
+    login({ email, password });
   };
 
   return (
@@ -29,7 +31,7 @@ const signIn = () => {
             placeholder="password"
           />
           <NavLink to="/profile">
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit" onClick={submitForm}>
               Log In
             </button>
           </NavLink>
